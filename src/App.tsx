@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 import MovieForm from './components/Movie/Movie';
 import MovieNameList from './components/MovieNameList/MovieNameList';
+import JokeBtn from './components/JokeBtn/JokeBtn';
 import './App.css';
 
 const App: React.FC = () => {
-    const [movies, newsMovies] = useState<string[]>([]);
+    const [movies, setMovies] = useState<string[]>([]);
 
     const addMovie = (movieName: string) => {
-        newsMovies([...movies, movieName]);
+        setMovies([...movies, movieName]);
     };
 
     const deleteMovie = (index: number) => {
-        const updated = [...movies];
-        updated.splice(index, 1);
-        newsMovies(updated);
+        const updatedMovies = [...movies];
+        updatedMovies.splice(index, 1);
+        setMovies(updatedMovies);
     };
 
     const edit = (index: number, newName: string) => {
         if (newName !== '') {
             const updatedMovies = [...movies];
             updatedMovies[index] = newName;
-            newsMovies(updatedMovies);
+            setMovies(updatedMovies);
         }
     };
 
@@ -39,6 +40,8 @@ const App: React.FC = () => {
                     />
                 ))}
             </ul>
+            <hr />
+            <JokeBtn />
         </div>
     );
 };
